@@ -56,7 +56,11 @@
 
       <!--pagination-->
       <div class="pagination">
-        <button class="prev page" :disabled="pageNow === 1" @click="prevPage">
+        <button
+          class="prev page"
+          :disabled="pageNow === 1"
+          @click="changePage('prev')"
+        >
           <i class="fas fa-chevron-left"></i>
         </button>
 
@@ -74,7 +78,7 @@
         <button
           class="next page"
           :disabled="pageNow === pages[pages.length - 1]"
-          @click="nextPage"
+          @click="changePage('next')"
         >
           <i class="fas fa-chevron-right"></i>
         </button>
@@ -86,14 +90,15 @@
 <script>
 import axios from 'axios'
 import TourCard from '@/components/TourCard.vue'
+import { formatPrice } from '@/utils/mixins'
 
 const bannerImage = 'https://dszfbyatv8d2t.cloudfront.net/curatorial/twtrip/sr_4000x520_x05.jpg'
 const baseUrl = 'https://interview.tripresso.com/tour/search'
 
-
 export default {
   name: 'Search',
   components: { TourCard },
+  mixins: [formatPrice],
   data() {
     return {
       pages: [],
@@ -173,35 +178,14 @@ export default {
     dropdownToggle() {
       this.priceDropdownToggle = !this.priceDropdownToggle
     },
-    prevPage() {
+    changePage(e) {
       const sort = this.$route.query.sort
       const page = Number(this.$route.query.page)
-      this.$router.push({ name: 'Search', query: { page: page - 1, sort } })
-    },
-    nextPage() {
-      const sort = this.$route.query.sort
-      const page = Number(this.$route.query.page)
-      this.$router.push({ name: 'Search', query: { page: page + 1, sort } })
+      const switchPage = e === 'prev' ? page - 1 : page + 1
+      this.$router.push({ name: 'Search', query: { page: switchPage, sort } })
     }
   },
   filters: {
-    price(val) {
-      function format(val) {
-        let result = []
-        let counter = 0
-        val = (val || 0).toString().split('')
-        for (var i = val.length - 1;i >= 0;i--) {
-          counter++
-          result.unshift(val[i])
-          if (!(counter % 3) && i !== 0) {
-            result.unshift(',')
-          }
-        }
-        return result.join('')
-      }
-
-      return format(val)
-    },
     sortTag(val) {
       if (val === '' || val === 'rating_desc') {
         return '價格'

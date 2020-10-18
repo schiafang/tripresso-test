@@ -62,38 +62,21 @@
 </template>
 
 <script>
+import { formatPrice } from '@/utils/mixins'
+
 export default {
   name: 'TourCard',
+  mixins: [formatPrice],
   props: {
     tours: {
       type: Array,
       required: true
     }
   },
-  mounted() {
-    console.log(this.tours)
-  },
   filters: {
     groupDate(val) {
       return val.slice(5, 10).replace('-', '/')
-    },
-    price(val) {
-      function format(val) {
-        let result = []
-        let counter = 0
-        val = (val || 0).toString().split('')
-        for (var i = val.length - 1;i >= 0;i--) {
-          counter++
-          result.unshift(val[i])
-          if (!(counter % 3) && i !== 0) {
-            result.unshift(',')
-          }
-        }
-        return result.join('')
-      }
-
-      return format(val)
-    },
+    }
   }
 }
 </script>
