@@ -1,5 +1,6 @@
 # tripresso-test
 
+### [Demo](https://schiafang.github.io/tripresso-test/)
 
 ### Thinking Process 
 
@@ -14,3 +15,9 @@
 9. 由價格切換回評分排序時，參考官網上的評分排序只有 desc 方式排序，所以只取評分由高到低的資料
 10. 分頁上的路由切換，紀錄當前選擇頁數與排序方式
 11. 最後將需要的資料取得渲染在畫面上，卡片上的可購買日期只取前四組日期
+
+<br>
+
+### Author
+[schiafang](https://github.com/schiafang) Carey
+schiafang@gmail.com
