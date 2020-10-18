@@ -1,24 +1,16 @@
 # tripresso-test
 
-## Project setup
-```
-npm install
-```
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+### Thinking Process 
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+1. 使用 axios 取得搜尋資料
+2. 由於 API 沒有回傳資料總數，無法動態顯示分頁數
+3. 以單頁 1000000 筆取得總資料數，計算分頁以及平均價格
+4. 題目沒有特別限定每頁資料總數，所以先以每頁十筆資料做顯示
+5. 進入搜尋頁面沒有特別選擇排序方式時，以評分為優先排序
+6. 當切換頁數時以同樣方式做排序向後端取得資料
+7. 切換價格排序時，重新取得排序後的資料顯示在畫面上，由於重新排序所以頁數回到第一頁
+8. 價格的高低共用同一個 methods，利用傳入的參數決定排序的方向
+9. 由價格切換回評分排序時，參考官網上的評分排序只有 desc 方式排序，所以只取評分由高到低的資料
+10. 分頁上的路由切換，紀錄當前選擇頁數與排序方式
+11. 最後將需要的資料取得渲染在畫面上，卡片上的可購買日期只取前四組日期

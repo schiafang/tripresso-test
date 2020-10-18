@@ -117,7 +117,7 @@ export default {
   watch: {
     $route(to) {
       this.fetchTours(to.query.page, to.query.sort)
-      this.pageNow = to.query.page
+      this.pageNow = Number(to.query.page)
     }
   },
   mounted() {

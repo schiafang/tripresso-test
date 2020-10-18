@@ -41,10 +41,15 @@
 
       <div class="card-bottom">
         <div class="tour-dates">
-          <span class="date" v-for="group in tour.group" :key="group.id">{{
-            group.date | groupDate
-          }}</span>
-          <span class="date">更多日期</span>
+          <div
+            class="group"
+            v-for="group in tour.group.slice(0, 4)"
+            :key="group.id"
+          >
+            <span class="date">{{ group.date | groupDate }}</span>
+            <span class="left">可售 {{ group.quantity }} 位</span>
+          </div>
+          <span class="group">更多日期</span>
         </div>
 
         <div class="tour-day-price">
@@ -65,7 +70,7 @@ export default {
       required: true
     }
   },
-  created() {
+  mounted() {
     console.log(this.tours)
   },
   filters: {
@@ -187,9 +192,22 @@ $orange: #ff9800;
     font-size: 0.8rem;
     pointer-events: none;
 
-    .date {
-      margin-right: 15px;
+    .group {
       display: inline-block;
+      margin: 10px 15px 0 0;
+    }
+
+    .date {
+      display: inline-block;
+      margin-right: 5px;
+    }
+
+    .left {
+      font-size: 0.6rem;
+      color: #bbb;
+      border: 1px solid #bbb;
+      border-radius: 3px;
+      padding: 1px 2px;
     }
   }
 
@@ -222,8 +240,8 @@ $orange: #ff9800;
   }
 
   .tour-card-image {
-    height: 100%;
-    width: 260px;
+    height: 260px;
+    width: 100%;
   }
 
   .tour-card-info {
@@ -231,9 +249,10 @@ $orange: #ff9800;
   }
 
   .card-bottom {
+    padding: 0 15px 15px 15px;
     grid-area: bottom;
     display: grid;
-    grid-template-columns: 250px auto;
+    grid-template-columns: auto auto;
     align-items: center;
 
     .tour-dates {
