@@ -1,28 +1,34 @@
 <template>
   <div id="app">
+    <Navtab />
     <router-view />
   </div>
 </template>
 
+<script>
+import Navtab from '@/components/Navtab.vue'
+export default {
+  name: 'App',
+  components: { Navtab }
+}
+</script>
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+body {
+  margin: 0;
+  color: #373a3c;
+  background-color: #eee;
+  font-family: Roboto, Helvetica, 'PingFang TC', 微軟正黑體, 'Heiti TC',
+    'LiHei Pro', Arial, sans-serif;
 }
 
-#nav {
-  padding: 30px;
+a {
+  text-decoration: none;
+  color: #373a3c;
 }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+button {
+  border: none;
+  outline: none;
 }
 </style>
